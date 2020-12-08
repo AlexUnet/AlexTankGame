@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class SimpleCarController : MonoBehaviour
 {
+    private bool auto;
+    private int vel;
     public void GetInput(){
         m_horizontalInput = Input.GetAxis("Horizontal");
         m_verticalInput = Input.GetAxis("Vertical");
+        if(Input.GetAxis("Vertical") != 0){            
+            auto = false;
+        }        
+        else if(Input.GetKeyDown(KeyCode.E)){
+            auto = !auto;
+            vel = 1;
+        }            
+        else if(Input.GetKeyDown(KeyCode.Q)){
+            auto = !auto;
+            vel = -1;
+        }
+
+        if(auto){
+            m_verticalInput = vel;
+        }
     }
 
     private void Steer(){
