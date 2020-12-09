@@ -70,7 +70,7 @@ public class SimpleCarController : MonoBehaviour
     public Transform rearDriverT, rearPassengerT;
 
     public float maxSteerAngle = 30;
-    public float motorForce = 50;
+    public float motorForce = 3050;
 
 
 }

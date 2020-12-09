@@ -17,7 +17,7 @@ public class SimpleCanonController : MonoBehaviour
         transform.LookAt(hit.point);
 
         transform.localRotation = new Quaternion(
-            Mathf.Clamp(transform.localRotation.x,-0.25f,0.25f),
+            Mathf.Clamp(transform.localRotation.x,-0.25f,0.10f),
             Mathf.Clamp(transform.localRotation.y,-0.25f,0.25f),
             transform.localRotation.z,1);
     }

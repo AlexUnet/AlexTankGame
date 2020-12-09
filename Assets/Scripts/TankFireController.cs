@@ -18,10 +18,9 @@ public class TankFireController : MonoBehaviour
                 fire = true;
                 Instantiate(fireEffect,transform.position,transform.rotation);
                 fire_A.SetBool("fire",true);
-                //Debug.Log("FIRE");
                 StartCoroutine(Reload());
                 Instantiate(shell,transform.position,transform.rotation).GetComponent<Rigidbody>().AddForce(transform.forward * 100,ForceMode.Impulse);
-                tank.AddExplosionForce(400f,transform.position,700f,1,ForceMode.Impulse);
+                tank.AddExplosionForce(200f,transform.position,700f,1,ForceMode.Impulse);
             }else{
                 //Debug.Log("RELOADING");
             }

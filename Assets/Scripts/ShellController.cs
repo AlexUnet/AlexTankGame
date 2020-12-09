@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShellController : MonoBehaviour
 {
+
     public Rigidbody cuerpo;
     public Ray HitDetecter;
     // Update is called once per frame
@@ -11,19 +12,22 @@ public class ShellController : MonoBehaviour
     {
         RaycastHit hit;
         float angle;
+        int layerMask = 1 << 8; // el rayo detecta
+        layerMask = ~layerMask; // todas menos las partes internas
 
-        if(Physics.Raycast(transform.position,transform.forward,out hit,2f)){
+        if(Physics.Raycast(transform.position,transform.forward,out hit,2f,layerMask)){
             angle = (-90 + Vector3.Angle(transform.forward,hit.normal));
             if(angle < 49.00){
                 this.GetComponentInParent<MeshCollider>().isTrigger = false;
-                Debug.LogError("RICOCHETT " + "WAY TO HIT: " + hit.collider.gameObject.name + "ANGLE: " + angle);
+                ShellShotBehavior.active = false;
+                Debug.LogError("RICOCHETT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);
             }else{
-                Debug.LogAssertion("HIT " + "WAY TO HIT: " + hit.collider.gameObject.name + "ANGLE: " + angle);
+                ShellShotBehavior.active = true;
+                Debug.LogAssertion("HIT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);
             }
             Destroy(this.gameObject);
         }
-        
-        Debug.DrawRay(transform.position,transform.forward,Color.red);
-        Debug.DrawRay(transform.position,-transform.forward,Color.blue);
+        //Debug.DrawRay(transform.position,transform.forward,Color.red);
+        //Debug.DrawRay(transform.position,-transform.forward,Color.blue);
     }
 }
