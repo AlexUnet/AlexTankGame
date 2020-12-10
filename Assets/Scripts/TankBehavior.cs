@@ -33,9 +33,11 @@ public class TankBehavior : MonoBehaviour
                 break;
             case "Transmission":
                 break;
-            case "Engine":                
+            case "Engine":
+                KillEngine();               
                 break;
             case "FuelTank":
+                StartFire();            
                 break;
             case "Barrel":
                 break;
@@ -51,6 +53,11 @@ public class TankBehavior : MonoBehaviour
         
     }
 
+    public void StartFire(){
+        fire = true;
+        StartCoroutine(AmmoCookingTime());
+    }
+
     public void Death(){
         //KILL THE TANK
     }
@@ -63,15 +70,41 @@ public class TankBehavior : MonoBehaviour
 
     public void AmmoExplotionAnimation(){
         transform.DetachChildren();
-        Debug.Log("OBJECT name: "+ turret.gameObject.name);
-        Instantiate(AmmoExplotionDeath,transform);
-        turret.AddExplosionForce(3000f,transform.position,1000f,1,ForceMode.Impulse);
+        turret.constraints = RigidbodyConstraints.None;
+        Instantiate(AmmoExplotionDeath,transform);        
+        turret.AddExplosionForce(Random.Range(3000f,4500f),transform.position,1000f,1,ForceMode.Impulse);
     }
 
     IEnumerator JackInWaitTime(){
         Instantiate(jackInEffect,transform);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         AmmoExplotionAnimation();
+    }
+
+    #endregion
+
+    #region FuelTank Animation
+
+    [SerializeField]GameObject fireEffect;
+    [SerializeField]Transform engine;
+    
+    void FuelTankFireAnimation(){
+
+    }
+
+    IEnumerator AmmoCookingTime(){
+        Instantiate(fireEffect,engine);
+        yield return new WaitForSeconds(15);
+        if(fire){
+            StartCoroutine(JackInWaitTime());
+        }
+    }
+    #endregion
+
+    #region Death Engine Animation
+
+    public void KillEngine(){
+        this.gameObject.GetComponent<SimpleCarController>().SetEngine(false);
     }
 
     #endregion

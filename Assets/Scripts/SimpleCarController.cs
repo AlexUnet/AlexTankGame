@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class SimpleCarController : MonoBehaviour
 {
+    public bool engineOn;
     private bool auto;
     private int vel;
+
+    private bool stop;
+
+    public void Awake(){
+        engineOn = true;
+    }
     public void GetInput(){
         m_horizontalInput = Input.GetAxis("Horizontal");
         m_verticalInput = Input.GetAxis("Vertical");
+
+        stop = Input.GetKey(KeyCode.Space);
+
         if(Input.GetAxis("Vertical") != 0){            
             auto = false;
         }        
@@ -31,10 +41,25 @@ public class SimpleCarController : MonoBehaviour
         frontDriverW.steerAngle = m_steeringAngle;
         frontPassengerW.steerAngle = m_steeringAngle;
     }
-
+    private bool reverse; bool foward = false;
     private void Accelerate(){
-        frontDriverW.motorTorque = m_verticalInput * motorForce;
-        frontPassengerW.motorTorque = m_verticalInput * motorForce;
+        float value = m_verticalInput * motorForce;
+        if(stop){
+            SetTorque(0,motorForce,0,motorForce,0,motorForce,0,motorForce);
+        }else{
+            SetTorque(value,0,value,0,value,0,value,0);
+        }
+    }
+
+    public void SetTorque(float frontDWA, float frontDB,float frontPWA, float frontPWB,float rearDWA,float rearDWB,float rearPWA, float rearPWB){
+        frontDriverW.motorTorque = frontDWA;
+        frontDriverW.brakeTorque = frontDB;
+        frontPassengerW.motorTorque = frontPWA;
+        frontPassengerW.brakeTorque = frontPWB;
+        rearDriverW.motorTorque = rearDWA;
+        rearDriverW.brakeTorque = rearDWB;
+        rearPassengerW.motorTorque = rearPWA;
+        rearPassengerW.brakeTorque = rearPWB;
     }
 
     private void UpdateWheelPoses(){
@@ -53,11 +78,28 @@ public class SimpleCarController : MonoBehaviour
         _transform.rotation = _quat;
     }
 
+    private void Stop(){
+        frontDriverW.brakeTorque = 100 * motorForce;
+        frontPassengerW.brakeTorque = 100 * motorForce;
+        rearDriverW.brakeTorque = 100 * motorForce;
+        rearPassengerW.brakeTorque = 100 * motorForce;
+    }
+
+    public void SetEngine(bool state){
+        engineOn = state;
+        Debug.Log("ENGINE DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
+    }
+
     private void FixedUpdate(){
-        GetInput();
-        Steer();
-        Accelerate();
-        UpdateWheelPoses();
+        if(engineOn){
+            GetInput();
+            Accelerate();
+            Steer();
+            UpdateWheelPoses();
+        }            
+        else{
+            Stop();
+        }        
     }
     
     private float m_horizontalInput;

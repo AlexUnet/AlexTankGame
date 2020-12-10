@@ -11,7 +11,7 @@ public class SimpleTankTurretMovement : MonoBehaviour
     void Update () {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(Camera.main.transform.position,ray.direction * range,Color.green);
+        Debug.DrawRay(Camera.main.transform.position,ray.direction * range,Color.grey);
         RaycastHit hit;
 
         Physics.Raycast(ray, out hit);

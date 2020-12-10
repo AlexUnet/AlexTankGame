@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleCanonController : MonoBehaviour
 {
+    
     void LateUpdate(){
     }
 
@@ -11,7 +12,10 @@ public class SimpleCanonController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        Physics.Raycast(ray, out hit);
+        int layerMask = 1 << 4;
+        layerMask = ~layerMask;
+
+        Physics.Raycast(ray, out hit,9999,layerMask);
         Debug.DrawRay(transform.position,ray.direction * 9999,Color.green);
 
         transform.LookAt(hit.point);
