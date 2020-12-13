@@ -9,23 +9,44 @@ public class TankFireController : MonoBehaviour
     public GameObject shell;
     public ParticleSystem fireEffect;
     bool fire;
+
+
     
-    // Update is called once per frame
+    
+    private bool cannonBreech = true;
+    private bool barrel = true;
+
+    void Awake(){
+
+    }
+
+    public void SetCannonBreech(bool state){
+        cannonBreech = state;
+    }
+
+    public void SetCannonBarrel(bool state){
+        barrel = state;
+    }
     void Update()
     {
         if(Input.GetMouseButtonDown(0)){
-            if(!fire){
-                fire = true;
-                Instantiate(fireEffect,transform.position,transform.rotation);
-                fire_A.SetBool("fire",true);
-                StartCoroutine(Reload());
-                Instantiate(shell,transform.position,transform.rotation).GetComponent<Rigidbody>().AddForce(transform.forward * 100,ForceMode.Impulse);
-                tank.AddExplosionForce(200f,transform.position,700f,1,ForceMode.Impulse);
+            if(cannonBreech){
+                    if(!fire){
+                    fire = true;
+                    Instantiate(fireEffect,transform.position,transform.rotation);
+                    fire_A.SetBool("fire",true);
+                    StartCoroutine(Reload());
+                    if(barrel)
+                        Instantiate(shell,transform.position,transform.rotation).GetComponent<Rigidbody>().AddForce(transform.forward * 200,ForceMode.Impulse);
+                    else
+                        Debug.Log("CANON BARREL DAMAGED WEAPON FIRE NOT POSIBLE");
+                    tank.AddExplosionForce(200f,transform.position,700f,1,ForceMode.Impulse);
+                }else{
+                    //Debug.Log("RELOADING");
+                }
             }else{
-                //Debug.Log("RELOADING");
-            }
-            
-            
+                Debug.Log("CANON BREECH DESTROYED WEAPON FIRE NOT POSIBLE");
+            }           
         }        
     }
 

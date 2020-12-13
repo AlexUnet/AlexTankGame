@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class SimpleCarController : MonoBehaviour
 {
-    public bool engineOn;
+
+    #region WheelController
+    private float m_horizontalInput;
+    private float m_verticalInput;
+    private float m_steeringAngle;
+
+    public WheelCollider frontDriverW, frontPassengerW;
+    public WheelCollider rearDriverW, rearPassengerW;
+    public Transform frontDriverT,frontPassengerT;
+    public Transform rearDriverT, rearPassengerT;
+
+    public float maxSteerAngle = 30;
+    public float motorForce = 3050;
+
+    #endregion
+
+
+    private bool engineOn = true;
     private bool auto;
     private int vel;
 
     private bool stop;
 
     public void Awake(){
-        engineOn = true;
     }
     public void GetInput(){
         m_horizontalInput = Input.GetAxis("Horizontal");
@@ -47,7 +63,9 @@ public class SimpleCarController : MonoBehaviour
         if(stop){
             SetTorque(0,motorForce,0,motorForce,0,motorForce,0,motorForce);
         }else{
-            SetTorque(value,0,value,0,value,0,value,0);
+            if(frontDriverW.rpm < 150){
+                SetTorque(value,0,value,0,value,0,value,0);
+            }            
         }
     }
 
@@ -90,6 +108,15 @@ public class SimpleCarController : MonoBehaviour
         Debug.Log("ENGINE DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
     }
 
+    public void SetTransmission(bool state){
+        Debug.Log("TRANSMISSION DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
+        Stop();
+        if(state)
+            motorForce = 3050;
+        else
+            motorForce = 50;
+    }
+
     private void FixedUpdate(){
         if(engineOn){
             GetInput();
@@ -102,17 +129,7 @@ public class SimpleCarController : MonoBehaviour
         }        
     }
     
-    private float m_horizontalInput;
-    private float m_verticalInput;
-    private float m_steeringAngle;
-
-    public WheelCollider frontDriverW, frontPassengerW;
-    public WheelCollider rearDriverW, rearPassengerW;
-    public Transform frontDriverT,frontPassengerT;
-    public Transform rearDriverT, rearPassengerT;
-
-    public float maxSteerAngle = 30;
-    public float motorForce = 3050;
+    
 
 
 }
