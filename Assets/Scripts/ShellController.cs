@@ -4,35 +4,32 @@ using UnityEngine;
 
 public class ShellController : MonoBehaviour
 {
+    //collider de la bala para que atraviese
+    [SerializeField]public MeshCollider body;
+    //distancia a la que se mide si rebota o no
+    [SerializeField] float detectionDistance;
+    //RB de prueba para bajar la velocidad y facilitar la detección
+    [SerializeField]Rigidbody bodyRB;
 
-    public Rigidbody cuerpo;
-    public Ray HitDetecter;
-
-    [SerializeField]SphereCollider explotion;
-    // Update is called once per frame
-    void Update()
+    RaycastHit hit;
+    float angle;
+    int layerMask = 1 << 8;
+    void Awake(){
+        // el rayo detecta todas menos las partes internas
+        layerMask = ~layerMask; 
+    }
+    void FixedUpdate()
     {
-        RaycastHit hit;
-        float angle;
-        int layerMask = 1 << 8; // el rayo detecta
-        layerMask = ~layerMask; // todas menos las partes internas
-
-        if(Physics.Raycast(transform.position,transform.forward,out hit,3f,layerMask)){
+        if(Physics.Raycast(transform.position,transform.forward,out hit,detectionDistance,layerMask)){
             angle = (-90 + Vector3.Angle(transform.forward,hit.normal));
             if(angle < 49.00){
-                this.GetComponentInParent<MeshCollider>().isTrigger = false;
-                ShellShotBehavior.active = false;
                 Debug.LogError("RICOCHETT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);
             }else{
-                ShellShotBehavior.active = true;
-                Debug.Log(new Vector3(transform.position.x,transform.position.y,transform.position.z));
-                Debug.Log(new Vector3(transform.rotation.x,transform.rotation.y,transform.rotation.z));              
-                Debug.LogAssertion("HIT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);
-                explotion.enabled = true;
+                body.isTrigger = true;
+                bodyRB.velocity = bodyRB.velocity / 2;                
+                Debug.LogAssertionFormat("HIT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);
             }
             Destroy(this.gameObject);
         }
-        //Debug.DrawRay(transform.position,transform.forward,Color.red);
-        //Debug.DrawRay(transform.position,-transform.forward,Color.blue);
     }
 }

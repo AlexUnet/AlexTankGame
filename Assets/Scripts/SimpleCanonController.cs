@@ -6,18 +6,24 @@ public class SimpleCanonController : MonoBehaviour
 {
     [SerializeField]Camera main;
 
+    int layerMask = 1 << 8; // el rayo detecta
+
+    void Awake(){        
+        layerMask = ~layerMask; // todas menos las partes internas
+    }
+    
     public GameObject testPoint;
     void LateUpdate(){
         Ray ray = main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Physics.Raycast(ray, out hit,9999);
-        //Debug.DrawRay(transform.position,ray.direction * 9999,Color.green);
+        Physics.Raycast(ray, out hit,Mathf.Infinity,layerMask);
+        Debug.DrawRay(transform.position,hit.point * Mathf.Infinity,Color.red);
 
         testPoint.transform.position = hit.point;
 
-        Vector3 dir = hit.point - transform.position;        
-        Quaternion lookRotation = Quaternion.LookRotation(dir,transform.up);
-        Vector3 rotation1 = lookRotation.eulerAngles;
+        //Vector3 dir = hit.point - transform.position;        
+        //Quaternion lookRotation = Quaternion.LookRotation(dir,transform.up);
+        //Vector3 rotation1 = lookRotation.eulerAngles;
         transform.LookAt(hit.point);
         //Debug.Log(transform.localEulerAngles); 
         transform.localRotation = Quaternion.Euler(TransformAngleX(transform.localEulerAngles.x),TransformAngleX(transform.localEulerAngles.y),0);

@@ -4,60 +4,90 @@ using UnityEngine;
 
 public class TankBehavior : MonoBehaviour
 {
-    public static int crew;
-    public static bool fire;
-    public static bool death;
+    int crew;
+    bool fire;
+    bool death;
+
+    int[] parts = new int[12];
     
     void Awake(){
         crew = 5;
         commander = gunner = loader = machineGunner = driver = true;
+        for(int i = 0;i < 12; i++){
+            parts[i] = 3;
+        }
     }
-    public void Impact(string partName,int damage){
-        Debug.LogError("DAMAGE IN:" + partName);
+    public void Impact(string partName,int damage, string damagerName){
+
+        Debug.LogError("DAMAGE IN:" + partName + " BY: " + damagerName);
         switch (partName)
         {
             case "Commander":
+            if(DamagePart(damage,0))
                 SetCommander(false,-1);
                 break;
             case "Gunner":
+            if(DamagePart(damage,1))
                 SetGunner(false,-1);
                 break;
             case "Loader":
+            if(DamagePart(damage,2))
                 SetLoader(false,-1);
                 break;
             case "Driver":
+            if(DamagePart(damage,3))
                 SetDriver(false,-1);
                 break;
             case "MachineGunner":
+            if(DamagePart(damage,4))
                 SetMachineGunner(false,-1);
                 break;
             case "HorizontalAiming":
+            if(DamagePart(damage,5))
                 KillHorizontalAiming();
                 break;
             case "CanonBreech":
+            if(DamagePart(damage,6))
                 KillCanonBreech();
                 break;
             case "Transmission":
+            if(DamagePart(damage,7))
                 KillTransmission();
                 break;
             case "Engine":
+            if(DamagePart(damage,7))
                 KillEngine();               
                 break;
             case "FuelTank":
+            if(DamagePart(damage,8))
                 StartFire();            
                 break;
             case "Barrel":
+            if(DamagePart(damage,9))
                 KillBarrel();
                 break;
             case "Ammo":
+            if(DamagePart(damage,10))
                 StartCoroutine(JackInWaitTime());
                 break;
             case "Radiator":
+            if(DamagePart(damage,11))
+                Debug.Log("OH NO RADITOR DEATH");
                 break;
             default:
                 Debug.Log("wtf nigga?");
                 break;
         }
+    }
+
+    public bool DamagePart(int damage, int part){
+        parts[part] -= damage;
+        if(parts[part] == 0)
+            return true; //la parte está muerta
+        return false; // todavía tiene vida
+    }
+
+    public void UpdateState(){
         
     }
 
@@ -86,7 +116,7 @@ public class TankBehavior : MonoBehaviour
 
     IEnumerator JackInWaitTime(){
         Instantiate(jackInEffect,transform);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(Random.Range(0.5f,3.0f));
         AmmoExplotionAnimation();
     }
 

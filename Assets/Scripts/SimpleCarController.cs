@@ -28,6 +28,7 @@ public class SimpleCarController : MonoBehaviour
     private bool stop;
 
     public void Awake(){
+        GetComponent<Rigidbody>().centerOfMass = new Vector3(0,-0.3f,0);
     }
     public void GetInput(){
         m_horizontalInput = Input.GetAxis("Horizontal");

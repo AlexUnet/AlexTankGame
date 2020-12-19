@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaed8ab5e720da4b804b405d10a4048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cuerpo: {fileID: 4804820294146930030}
-  explotion: {fileID: 5385387282962969418}
+  body: {fileID: 6141521130626610286}
+  detectionDistance: 3
+  bodyRB: {fileID: 4804820294146930030}
 --- !u!1 &1190581225453979719
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ GameObject:
   - component: {fileID: 5385387282962969418}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Explotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,11 +71,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190581225453979719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.053, z: 0.804}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 593547713193425849}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5385387282962969418
 SphereCollider:
@@ -89,65 +90,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.47808468
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &2872374444557664127
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4350736949794364781}
-  - component: {fileID: 3172213398838830266}
-  - component: {fileID: 4720201086559575441}
-  m_Layer: 0
-  m_Name: Fuse
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4350736949794364781
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2872374444557664127}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 593547713193425849}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3172213398838830266
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2872374444557664127}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.04586245, y: 0.030724704, z: 0.2132374}
-  m_Center: {x: -0.00050441176, y: -0.00007227063, z: 0.09870201}
---- !u!114 &4720201086559575441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2872374444557664127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41219cecd7d15b4b9502e35914c6b4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 3102832371509219449}
-  explotion: {fileID: 5385387282962969418}
 --- !u!1 &3102832371509219449
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +106,7 @@ GameObject:
   - component: {fileID: 125110163641943873}
   m_Layer: 0
   m_Name: "\u0421TF_Missile_Yel TEST"
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,12 +120,11 @@ Transform:
   m_GameObject: {fileID: 3102832371509219449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.48, y: 0.69, z: 3.15}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 8503890046312466562}
   - {fileID: 2970968172875788837}
   - {fileID: 849095196411200161}
-  - {fileID: 4350736949794364781}
   - {fileID: 6309588599824073781}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -261,7 +202,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3102832371509219449}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -280,6 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactParticle: {fileID: 8031760770402687423, guid: 8c810501564639641889e256bbb8c008, type: 3}
+  body: {fileID: 4804820294146930030}
+  explotion: {fileID: 5385387282962969418}
+  active: 0
 --- !u!1 &3884442075839669286
 GameObject:
   m_ObjectHideFlags: 0
