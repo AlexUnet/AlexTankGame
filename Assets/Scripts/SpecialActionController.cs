@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpecialActionController : MonoBehaviour
 {
+    [SerializeField]TankBehavior tankBehavior;
     [SerializeField]Camera thirdPersonCamera;
     [SerializeField]Camera firstPersonCamera;
     [SerializeField]Canvas scopeCanvas;
@@ -28,6 +29,8 @@ public class SpecialActionController : MonoBehaviour
             scopeCanvas.enabled = state;
             thirdPersonCamera.targetDisplay = current;
             firstPersonCamera.targetDisplay = second;
+            firstPersonCamera.fieldOfView = 27;
+            zoom = false;
         }
 
         if(Input.GetMouseButtonDown(1)){
@@ -38,7 +41,13 @@ public class SpecialActionController : MonoBehaviour
                 zoom = false;
                 firstPersonCamera.fieldOfView = 27;
             }
-            
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha6)){
+            tankBehavior.StopFire();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha5)){
+            tankBehavior.StartFire();
         }
     }
 }

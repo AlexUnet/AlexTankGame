@@ -6,10 +6,16 @@ public class SimpleCanonController : MonoBehaviour
 {
     [SerializeField]Camera main;
 
+    private bool gunner = true;
+
     int layerMask = 1 << 8; // el rayo detecta
 
     void Awake(){        
         layerMask = ~layerMask; // todas menos las partes internas
+    }
+
+    public void SetGunner(bool state){
+        gunner = state;
     }
     
     public GameObject testPoint;
@@ -24,7 +30,8 @@ public class SimpleCanonController : MonoBehaviour
         //Vector3 dir = hit.point - transform.position;        
         //Quaternion lookRotation = Quaternion.LookRotation(dir,transform.up);
         //Vector3 rotation1 = lookRotation.eulerAngles;
-        transform.LookAt(hit.point);
+        if(gunner)
+            transform.LookAt(hit.point);
         //Debug.Log(transform.localEulerAngles); 
         transform.localRotation = Quaternion.Euler(TransformAngleX(transform.localEulerAngles.x),TransformAngleX(transform.localEulerAngles.y),0);
         //transform.localRotation = Quaternion.Euler(TransformAngleX(rotation1.x),TransformAngleX(rotation1.y),0);

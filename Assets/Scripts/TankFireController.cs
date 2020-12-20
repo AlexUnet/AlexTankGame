@@ -8,16 +8,22 @@ public class TankFireController : MonoBehaviour
     public Animator fire_A;
     public GameObject shell;
     public ParticleSystem fireEffect;
-    bool fire;
 
-
-    
-    
+    private int reloadTime;
+    private bool fire;
     private bool cannonBreech = true;
     private bool barrel = true;
 
     void Awake(){
 
+    }
+
+    public void SetLoader(bool state){
+        if(state){
+            reloadTime = 5;
+        }else{
+            reloadTime = 9;
+        }
     }
 
     public void SetCannonBreech(bool state){

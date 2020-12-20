@@ -221,9 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactParticle: {fileID: 8031760770402687423, guid: 8c810501564639641889e256bbb8c008, type: 3}
+  fuseParticle: {fileID: 8481380879536300399, guid: ab0f7b694724ae24cb21975fd1587a94, type: 3}
   body: {fileID: 4804820294146930030}
   explotion: {fileID: 5385387282962969418}
-  active: 0
 --- !u!1 &3884442075839669286
 GameObject:
   m_ObjectHideFlags: 0

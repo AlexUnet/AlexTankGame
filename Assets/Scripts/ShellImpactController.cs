@@ -7,6 +7,8 @@ public class ShellImpactController : MonoBehaviour
     private int ricochets;
     private int perforations;
     public GameObject impactParticle;
+    [SerializeField] GameObject fuseParticle;
+
     [SerializeField] Rigidbody body;
     [SerializeField] SphereCollider explotion;
     private bool active;
@@ -30,7 +32,8 @@ public class ShellImpactController : MonoBehaviour
     void OnCollisionExit(){
     }
     void OnTriggerEnter(Collider other){
-        if(active){
+        
+        if(active){            
             //body.isKinematic = true;
             perforations++;
             explotion.enabled = true;
@@ -40,6 +43,7 @@ public class ShellImpactController : MonoBehaviour
     void OnTriggerStay(){
     }
     void OnTriggerExit(){
+        Instantiate(fuseParticle,transform.position,transform.rotation);
         //body.isKinematic = true;
         Destroy(this.gameObject);
         //StartCoroutine(Fuse());

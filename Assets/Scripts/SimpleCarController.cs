@@ -22,6 +22,8 @@ public class SimpleCarController : MonoBehaviour
 
 
     private bool engineOn = true;
+    private bool driverOn = true;
+    private bool radiatorOn = true;
     private bool auto;
     private int vel;
 
@@ -109,18 +111,32 @@ public class SimpleCarController : MonoBehaviour
         Debug.Log("ENGINE DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
     }
 
+    public void SetDriver(bool state){
+        driverOn = state;
+        //Debug.Log("DRIVER DEATH DIRECTION CONTROL NOT POSIBLE IN ->" + this.gameObject.name); 
+    }
+
+    public void SetRadiator(bool state){
+        if(state){
+            motorForce = 800;
+        }else{
+            motorForce = 560;
+        }
+    }
+
     public void SetTransmission(bool state){
-        Debug.Log("TRANSMISSION DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
+        //Debug.Log("TRANSMISSION DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
         Stop();
         if(state)
-            motorForce = 3050;
+            motorForce = 800;
         else
             motorForce = 50;
     }
 
     private void FixedUpdate(){
         if(engineOn){
-            GetInput();
+            if(driverOn)
+                GetInput();
             Accelerate();
             Steer();
             UpdateWheelPoses();
