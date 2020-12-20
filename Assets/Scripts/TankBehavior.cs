@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class TankBehavior : MonoBehaviour
 {
+    public const int partCount = 18;
     int crew;
     bool fire;
     bool death;
 
-    int[] parts = new int[12];
+    int[] parts = new int[partCount];// FALTAN LAS RUEDAS +4 
     
     void Awake(){
         crew = 5;
         commander = gunner = loader = machineGunner = driver = true;
-        for(int i = 0;i < 12; i++){
+        for(int i = 0;i < partCount; i++){
             parts[i] = 3;
         }
     }
     public void Impact(string partName,int damage, string damagerName){
 
-        Debug.LogError("DAMAGE IN:" + partName + " BY: " + damagerName);
+        //Debug.LogError("DAMAGE IN:" + partName + " BY: " + damagerName);
         switch (partName)
         {
             case "Commander":
@@ -55,23 +56,31 @@ public class TankBehavior : MonoBehaviour
                 KillTransmission();
                 break;
             case "Engine":
-            if(DamagePart(damage,7))
+            if(DamagePart(damage,8))
                 KillEngine();               
                 break;
-            case "FuelTank":
-            if(DamagePart(damage,8))
+            case "FuelTankR":
+            if(DamagePart(damage,9))
+                StartFire();            
+                break;
+            case "FuelTankL":
+            if(DamagePart(damage,10))
                 StartFire();            
                 break;
             case "Barrel":
-            if(DamagePart(damage,9))
+            if(DamagePart(damage,11))
                 KillBarrel();
                 break;
-            case "Ammo":
-            if(DamagePart(damage,10))
+            case "AmmoR":
+            if(DamagePart(damage,12))
+                StartCoroutine(JackInWaitTime());
+                break;
+            case "AmmoL":
+            if(DamagePart(damage,13))
                 StartCoroutine(JackInWaitTime());
                 break;
             case "Radiator":
-            if(DamagePart(damage,11))
+            if(DamagePart(damage,14))
                 Debug.Log("OH NO RADITOR DEATH");
                 break;
             default:
@@ -82,7 +91,8 @@ public class TankBehavior : MonoBehaviour
 
     public bool DamagePart(int damage, int part){
         parts[part] -= damage;
-        if(parts[part] == 0)
+        Debug.Log("la Parte: N#" + part + " recibió: " + damage+ " le quedan " + parts[part]);
+        if(parts[part] <= 0)
             return true; //la parte está muerta
         return false; // todavía tiene vida
     }

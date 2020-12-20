@@ -9,10 +9,15 @@ public class ShellImpactController : MonoBehaviour
     public GameObject impactParticle;
     [SerializeField] Rigidbody body;
     [SerializeField] SphereCollider explotion;
-    public bool active;
+    private bool active;
+
+    public void SetActive(bool state){
+        active = state;
+    }
 
     void Awake(){
         explotion.enabled = false;
+        active = true;
     }
 
     void OnCollisionEnter(Collision collision){
@@ -20,24 +25,29 @@ public class ShellImpactController : MonoBehaviour
         Instantiate(impactParticle,collision.GetContact(0).point,transform.rotation);
         StartCoroutine(Destroy());
     }
-    void OncollisionStay(){
-        
+    void OncollisionStay(){        
     }
     void OnCollisionExit(){
-
     }
-
     void OnTriggerEnter(Collider other){
-        perforations++;
-        explotion.enabled = true;
-        Debug.Log("TRIGGER EN COLLIDER DE LA BALA CON "+ other.gameObject.name);
+        if(active){
+            //body.isKinematic = true;
+            perforations++;
+            explotion.enabled = true;
+            //Debug.Log("TRIGGER EN COLLIDER DE LA BALA CON "+ other.gameObject.name + " " + perforations);
+        }        
     }
     void OnTriggerStay(){
     }
     void OnTriggerExit(){
-
+        //body.isKinematic = true;
+        Destroy(this.gameObject);
+        //StartCoroutine(Fuse());
     }
-    
+    IEnumerator Fuse(){
+        yield return new WaitForSeconds(1);
+        Destroy(this.gameObject);
+    }
     IEnumerator Destroy(){
         yield return new WaitForSeconds(6);
         Destroy(this.gameObject);

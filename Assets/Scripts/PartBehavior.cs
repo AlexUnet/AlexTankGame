@@ -18,14 +18,24 @@ public class PartBehavior : MonoBehaviour
         //Debug.Log("PERFORATION IN:" + this.gameObject.name + "BY: " + other.gameObject.name);
         if(state){
             if(other.gameObject.tag == "Bullet"){
-                parent.Impact(this.gameObject.name,1,other.gameObject.name);
+                Debug.Log("PERFORATION BY SHELL DAMAGE IN: " + gameObject.name);
+                parent.Impact(this.gameObject.name,3,other.gameObject.name);
             }else{
-
+                float dis = Vector3.Distance(other.gameObject.transform.position,transform.position);
+                //Debug.Log("EXPLOTION DAMAGE IN"+ gameObject.name+ " at distance: " + dis);
+                ExplotionDamage(gameObject.name,dis);
+                //-0.4442543/0/0.08522007
             }  
         }                                   
     }
 
-    public void ExplotionDamage(){
-        parent.Impact(this.gameObject.name,2,"EXPLOTION");
+    public void ExplotionDamage(string part,float distance){
+        if(distance < 1.1f){
+            parent.Impact(part,3,"explotion");
+        }else if(distance < 1.50f){
+            parent.Impact(part,2,"explotion");
+        }else if(distance < 2.5){
+            parent.Impact(part,1,"explotion");
+        }        
     }
 }

@@ -24,9 +24,10 @@ public class ShellController : MonoBehaviour
             angle = (-90 + Vector3.Angle(transform.forward,hit.normal));
             if(angle < 49.00){
                 Debug.LogError("RICOCHETT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);
+                GetComponentInParent<ShellImpactController>().SetActive(false);
             }else{
                 body.isTrigger = true;
-                bodyRB.velocity = bodyRB.velocity / 2;                
+                bodyRB.velocity = bodyRB.velocity / 2.8f;         
                 Debug.LogAssertionFormat("HIT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);
             }
             Destroy(this.gameObject);

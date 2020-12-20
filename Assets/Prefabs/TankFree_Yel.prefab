@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5349753567618149179}
   - component: {fileID: 686266301340077387}
-  - component: {fileID: 8875529597625219197}
   - component: {fileID: 731699220}
   m_Layer: 8
-  m_Name: FuelTank
+  m_Name: FuelTankR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102787031132436566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0.059, z: -0.515}
+  m_LocalPosition: {x: 0.4198269, y: -0.1650489, z: -0.719}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
@@ -45,20 +44,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.13893239, y: 0.3572669, z: 0.5553326}
-  m_Center: {x: 0.41982687, y: -0.16504893, z: -0.063591205}
---- !u!65 &8875529597625219197
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102787031132436566}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14056794, y: 0.35726684, z: 0.5553326}
-  m_Center: {x: -0.40546426, y: -0.16504888, z: -0.13979384}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &731699220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +244,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1340192715428287993
 BoxCollider:
@@ -386,7 +372,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.18723887, y: 0.2535275, z: 0.27676156}
-  m_Center: {x: -0.006380558, y: -0.026763758, z: 0.038380772}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1214432376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,10 +427,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.029047519
-  m_Height: 0.97979134
+  m_Radius: 0.055134952
+  m_Height: 0.9258928
   m_Direction: 2
-  m_Center: {x: -0.019610276, y: -0.00033060712, z: 0.21754551}
+  m_Center: {x: -0.014845908, y: 0.0012737513, z: 0.31228086}
 --- !u!114 &78654669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,7 +543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3142482992769073745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.006, y: 0.389, z: 0.004}
+  m_LocalPosition: {x: 0.001, y: 0.512, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
@@ -751,10 +737,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8761795437780015258}
   - component: {fileID: 3918473971943079782}
-  - component: {fileID: 1437743093081112738}
   - component: {fileID: 1689526473}
   m_Layer: 8
-  m_Name: Ammo
+  m_Name: AmmoL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -768,11 +753,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4024470500529903705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.077, z: 0.065}
+  m_LocalPosition: {x: -0.4442543, y: -0.166, z: 0.08522007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3918473971943079782
 BoxCollider:
@@ -786,20 +771,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.11844349, y: 0.14, z: 0.4107744}
-  m_Center: {x: -0.44425434, y: 0, z: 0.08522007}
---- !u!65 &1437743093081112738
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4024470500529903705}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.10245626, y: 0.14, z: 0.48898035}
-  m_Center: {x: 0.43419513, y: 0, z: 0.04611693}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1689526473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,7 +810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4206627103714872920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.389, y: 0.157, z: 0.599}
+  m_LocalPosition: {x: -0.389, y: 0.157, z: 0.515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
@@ -928,7 +900,7 @@ Transform:
   m_Children:
   - {fileID: 2827511063117139748}
   m_Father: {fileID: 7786597875802154301}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5338275023719902233
 GameObject:
@@ -1147,7 +1119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6681799388532342618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.398, y: 0.175, z: 0.605}
+  m_LocalPosition: {x: 0.398, y: 0.175, z: 0.521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
@@ -1269,6 +1241,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2040644, y: 0.19810371, z: 0.11899392}
   m_Center: {x: -0.0066502094, y: -0.15247765, z: -0.85716075}
+--- !u!1 &7295465734620792369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8555257359413645210}
+  - component: {fileID: 5551012451377604365}
+  - component: {fileID: 8552158262552583892}
+  m_Layer: 8
+  m_Name: AmmoR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8555257359413645210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295465734620792369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4341951, y: -0.166, z: 0.04611693}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7786597875802154301}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5551012451377604365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295465734620792369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10245626, y: 0.14, z: 0.48898035}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8552158262552583892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295465734620792369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa091963208c52346a90056ba15b6176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7484500079495704989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,8 +1651,65 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.472404, y: 3.142283, z: 9.616844}
-  m_Center: {x: -0.042844918, y: -1.4583137, z: 0.53895634}
+  m_Size: {x: 10.472404, y: 2.0534494, z: 9.616844}
+  m_Center: {x: -0.042844914, y: -0.9138904, z: 0.53895605}
+--- !u!1 &8128551773967517867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474867191530069473}
+  - component: {fileID: 4813361031063683062}
+  - component: {fileID: 2270986843564597256}
+  m_Layer: 8
+  m_Name: FuelTankL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &474867191530069473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128551773967517867}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4198269, y: -0.1650489, z: -0.719}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7786597875802154301}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4813361031063683062
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128551773967517867}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14056794, y: 0.35726684, z: 0.5553326}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2270986843564597256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128551773967517867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa091963208c52346a90056ba15b6176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8456396631104869004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,7 +1755,9 @@ Transform:
   - {fileID: 11456713880524579}
   - {fileID: 5115943290244208013}
   - {fileID: 5349753567618149179}
+  - {fileID: 474867191530069473}
   - {fileID: 8761795437780015258}
+  - {fileID: 8555257359413645210}
   - {fileID: 8597051509528631260}
   - {fileID: 3510476072521359903}
   m_Father: {fileID: 0}
@@ -1962,7 +2050,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8873583052089554150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.023, y: -0.16, z: -0.259}
+  m_LocalPosition: {x: -0.023, y: -0.203, z: -0.259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
