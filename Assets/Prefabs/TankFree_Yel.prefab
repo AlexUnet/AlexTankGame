@@ -1726,6 +1726,7 @@ GameObject:
   - component: {fileID: 8884370869269417031}
   - component: {fileID: 2091005275228037299}
   - component: {fileID: 6257295848115513906}
+  - component: {fileID: 8033763034447445174}
   m_Layer: 9
   m_Name: TankFree_Yel
   m_TagString: Player
@@ -1893,6 +1894,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1057425, y: 0.39904818, z: 0.26104292}
   m_Center: {x: 0.007892391, y: -0.052031003, z: 0.8099865}
+--- !u!114 &8033763034447445174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456396631104869004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a278282f10f7ba94e9d84e18ff3b1c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thirdPersonCamera: {fileID: 6227664583590492756, guid: aafc6966141254b41a6486ce86dfeb7c, type: 3}
+  firstPersonCamera: {fileID: 1783095959608004761}
+  scopeCanvas: {fileID: 8350272498237923685, guid: 30056d74fd041d547b53f16516f8f6dc, type: 3}
 --- !u!1 &8520488855059695892
 GameObject:
   m_ObjectHideFlags: 0
