@@ -11,6 +11,8 @@ public class TankBehavior : MonoBehaviour
 
     private GameObject buffer;
 
+    [SerializeField]private PartBehavior[] partsBehavior = new PartBehavior[partCount];
+
     private int[] parts = new int[partCount];// FALTAN LAS RUEDAS +4 
     
     void Awake(){
@@ -96,6 +98,7 @@ public class TankBehavior : MonoBehaviour
     public bool DamagePart(int damage, int part){
         if(parts[part] > 0){
             parts[part] -= damage;
+            partsBehavior[part].Setvitality(parts[part]);
             Debug.Log("la Parte: N#" + part + " recibió damage: " + damage+ " le quedan " + parts[part]);
             if(parts[part] <= 0)
                 return true; //la parte está muerta
@@ -240,19 +243,16 @@ public class TankBehavior : MonoBehaviour
         if(!driver){
             if(machineGunner){
                 Debug.Log("MACHINE GUNNER POR DRIVER");
-                parts[3] = parts[4];
-                parts[4] = 0;
+                ExchangeCrewMembersArray(3,4);
                 SetMachineGunner(false,0);
                 SetDriver(true,0);
             }else if(commander){
                 Debug.Log("COMMANDER POR DRIVER");
-                parts[3] = parts[0];
-                parts[0] = 0;
+                ExchangeCrewMembersArray(3,0);
                 SetCommander(false,0);
                 SetDriver(true,0);
             }else if(loader){
-                parts[3] = parts[2];
-                parts[2] = 0;
+                ExchangeCrewMembersArray(3,2);
                 Debug.Log("LOADER POR DRIVER");
                 SetLoader(false,0);
                 SetDriver(true,0);
@@ -261,25 +261,30 @@ public class TankBehavior : MonoBehaviour
         if(!gunner){
             if(machineGunner){
                 Debug.Log("MACHINE GUNNER POR GUNNER");
-                parts[3] = parts[4];
-                parts[4] = 0;
+                ExchangeCrewMembersArray(1,4);
                 SetMachineGunner(false,0);
                 SetGunner(true,0);
             }else if(commander){
                 Debug.Log("COMMANDER POR GUNNER");
-                parts[3] = parts[0];
-                parts[0] = 0;
+                ExchangeCrewMembersArray(1,0);
                 SetCommander(false,0);
                 SetGunner(true,0);
             }else if(loader){
                 Debug.Log("LOADER POR GUNNER");
-                parts[3] = parts[2];
-                parts[2] = 0;
+                ExchangeCrewMembersArray(1,2);
                 SetLoader(false,0);
                 SetGunner(true,0);
             }
         }
     }
+
+    public void ExchangeCrewMembersArray(int damaged,int replacement){
+        parts[damaged] = parts[replacement];
+        parts[replacement] = 0;
+        partsBehavior[damaged].Setvitality(parts[damaged]);
+        partsBehavior[replacement].Setvitality(parts[replacement]);
+    }
+    
     #endregion
 
     #region Canon Breech

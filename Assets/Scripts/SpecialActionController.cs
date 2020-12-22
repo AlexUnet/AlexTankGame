@@ -46,8 +46,5 @@ public class SpecialActionController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha6)){
             tankBehavior.StopFire();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha5)){
-            tankBehavior.StartFire();
-        }
     }
 }

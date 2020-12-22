@@ -108,7 +108,7 @@ public class SimpleCarController : MonoBehaviour
 
     public void SetEngine(bool state){
         engineOn = state;
-        Debug.Log("ENGINE DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
+        //Debug.Log("ENGINE DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
     }
 
     public void SetDriver(bool state){

@@ -7,14 +7,47 @@ public class PartBehavior : MonoBehaviour
     private TankBehavior parent;
     private Collider part;
 
-    [SerializeField]private int vitality; //para definir la resistencia de cada parte en el futuro si se quiere
+    private PartsStateHudBehavior partStateBehavior;
+
+    private Renderer partRenderer;
+
+    [SerializeField]private int vitality; //vida de la parte
+    [SerializeField]private int resistance;//para definir la resistencia de cada parte en el futuro si se quiere
+
     private bool state;
 
+    
     void Awake(){
+        vitality = 3;
         parent = this.GetComponentInParent<TankBehavior>();
         part = this.GetComponent<Collider>();
+        partStateBehavior = this.GetComponent<PartsStateHudBehavior>();
+        partRenderer = GetComponent<Renderer>();
         state = true;
     }
+
+    #region PART HUD STATE
+
+    public void Setvitality(int vitality){
+        this.vitality = vitality;
+        UpdateHudState();
+    }
+    
+    public void UpdateHudState(){ 
+        if(vitality == 2){
+            partRenderer.material.SetColor("_Color",Color.yellow);
+        }else if(vitality == 1){
+            partRenderer.material.SetColor("_Color",Color.red);
+        }else if(vitality == 0){
+            partRenderer.material.SetColor("_Color",Color.black);
+        }else if(vitality == 3){
+            partRenderer.material.SetColor("_Color",Color.white);
+        }
+    }
+
+    #endregion
+
+    #region IMPACT DAMAGE CALCULATIONS
 
     void OnTriggerEnter(Collider other){
         //Debug.Log("PERFORATION IN:" + this.gameObject.name + "BY: " + other.gameObject.name);
@@ -38,4 +71,6 @@ public class PartBehavior : MonoBehaviour
             parent.Impact(part,1,"explotion");
         }        
     }
+
+    #endregion
 }
