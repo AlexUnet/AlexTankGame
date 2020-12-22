@@ -22,6 +22,78 @@ public class TankBehavior : MonoBehaviour
             parts[i] = 3;
         }
     }
+
+    public void Death(){
+        Debug.Log("TANK: " + this.gameObject.name + " DESTROYED");
+        this.GetComponent<SimpleCarController>().enabled = false;
+        this.GetComponent<SpecialActionController>().enabled = false;
+        this.GetComponentInChildren<SimpleTankTurretMovement>().enabled = false;
+        this.GetComponentInChildren<SimpleCanonController>().enabled = false;
+        this.GetComponentInChildren<TankFireController>().enabled = false;
+        //KILL THE TANK
+    }
+
+    #region Repair
+
+    public void CheckDeathParts(){
+        for (int i = 0; i < partCount; i++)
+        {
+            if(parts[i] <= 0){
+                StartCoroutine(WaitRepairTime(i,9));
+                Debug.Log("LA PARTE " + i + " ESTÁ DAÑADA SE EMPIEZA LA REPARACIÓN");
+            }
+        }
+    }
+    
+    IEnumerator WaitRepairTime(int partIndex,int repairTime){
+        yield return new WaitForSeconds(repairTime);
+        RepairPart(partIndex);
+    }
+
+    public void RepairPart(int partPosition){
+        switch(partPosition){
+            case 5:
+            partsBehavior[partPosition].SetVitality(3);
+            parts[partPosition] = 3;
+            SetHorizontalAiming(true);            
+            break;
+            case 6:
+            partsBehavior[partPosition].SetVitality(3);
+            parts[partPosition] = 3;
+            SetCanonBreech(true);            
+            break;
+            case 7:
+            partsBehavior[partPosition].SetVitality(3);
+            parts[partPosition] = 3;
+            SetTransmission(true);
+            break;
+            case 8:
+            partsBehavior[partPosition].SetVitality(3);
+            parts[partPosition] = 3;
+            SetEngine(true);
+            break;
+            case 11:
+            partsBehavior[partPosition].SetVitality(3);
+            parts[partPosition] = 3;
+            SetBarrel(true);
+            break;
+            case 14:
+            partsBehavior[partPosition].SetVitality(3);
+            parts[partPosition] = 3;
+            SetRadiator(true);
+            break;
+            default:
+            Debug.Log("LA PARTE NO SE PUEDE REPARAR O ES UN TRIPULANTE");
+            break;
+        }
+        Debug.Log("PROCESO DE REPARACIÖN FINALIZADO");
+    }
+
+
+    #endregion
+
+    #region Damage Logic
+
     public void Impact(string partName,int damage, string damagerName){
         //Debug.LogError("DAMAGE IN:" + partName + " BY: " + damagerName);
         switch (partName)
@@ -50,19 +122,19 @@ public class TankBehavior : MonoBehaviour
                 break;
             case "HorizontalAiming":
             if(DamagePart(damage,5))
-                KillHorizontalAiming();
+                SetHorizontalAiming(false);
                 break;
             case "CanonBreech":
             if(DamagePart(damage,6))
-                KillCanonBreech();
+                SetCanonBreech(false);
                 break;
             case "Transmission":
             if(DamagePart(damage,7))
-                KillTransmission();
+                SetTransmission(false);
                 break;
             case "Engine":
             if(DamagePart(damage,8))
-                KillEngine();               
+                SetEngine(false);               
                 break;
             case "FuelTankR":
             if(DamagePart(damage,9))
@@ -74,7 +146,7 @@ public class TankBehavior : MonoBehaviour
                 break;
             case "Barrel":
             if(DamagePart(damage,11))
-                KillBarrel();
+                SetBarrel(false);
                 break;
             case "AmmoR":
             if(DamagePart(damage,12))
@@ -86,7 +158,7 @@ public class TankBehavior : MonoBehaviour
                 break;
             case "Radiator":
             if(DamagePart(damage,14))
-                KillRadiator();                
+                SetRadiator(false);                
                 break;
             default:
                 Debug.Log("wtf nigga?");
@@ -94,11 +166,10 @@ public class TankBehavior : MonoBehaviour
         }
         CheckCrew();        
     }
-
     public bool DamagePart(int damage, int part){
         if(parts[part] > 0){
             parts[part] -= damage;
-            partsBehavior[part].Setvitality(parts[part]);
+            partsBehavior[part].SetVitality(parts[part]);
             Debug.Log("la Parte: N#" + part + " recibió damage: " + damage+ " le quedan " + parts[part]);
             if(parts[part] <= 0)
                 return true; //la parte está muerta
@@ -106,15 +177,7 @@ public class TankBehavior : MonoBehaviour
         return false; // la parte no se dañó porque posiblemente esté muerta
     }
 
-    
-    public void Death(){
-        this.GetComponent<SimpleCarController>().enabled = false;
-        this.GetComponent<SpecialActionController>().enabled = false;
-        this.GetComponentInChildren<SimpleTankTurretMovement>().enabled = false;
-        this.GetComponentInChildren<SimpleCanonController>().enabled = false;
-        this.GetComponentInChildren<TankFireController>().enabled = false;
-        //KILL THE TANK
-    }
+    #endregion
 
     #region Fire Behavior
     public void StartFire(){
@@ -179,15 +242,15 @@ public class TankBehavior : MonoBehaviour
 
     #region Death Engine 
 
-    public void KillEngine(){
-        this.gameObject.GetComponent<SimpleCarController>().SetEngine(false);
+    public void SetEngine(bool state){
+        this.gameObject.GetComponent<SimpleCarController>().SetEngine(state);
     }
 
     #endregion
 
     #region Death Horizontal Aiming
-    public void KillHorizontalAiming(){
-        this.gameObject.GetComponentInChildren<SimpleTankTurretMovement>().SetHorizontalAiming(false);
+    public void SetHorizontalAiming(bool state){
+        this.gameObject.GetComponentInChildren<SimpleTankTurretMovement>().SetHorizontalAiming(state);
     }
 
     #endregion
@@ -281,37 +344,38 @@ public class TankBehavior : MonoBehaviour
     public void ExchangeCrewMembersArray(int damaged,int replacement){
         parts[damaged] = parts[replacement];
         parts[replacement] = 0;
-        partsBehavior[damaged].Setvitality(parts[damaged]);
-        partsBehavior[replacement].Setvitality(parts[replacement]);
+        partsBehavior[damaged].SetVitality(parts[damaged]);
+        partsBehavior[replacement].SetVitality(parts[replacement]);
     }
     
     #endregion
 
     #region Canon Breech
 
-    public void KillCanonBreech(){
-        this.gameObject.GetComponentInChildren<TankFireController>().SetCannonBreech(false);
+    public void SetCanonBreech(bool state){
+        this.gameObject.GetComponentInChildren<TankFireController>().SetCannonBreech(state);
     }
     #endregion
 
     #region Transmission
 
-    public void KillTransmission(){
-        this.gameObject.GetComponentInChildren<SimpleCarController>().SetTransmission(false);
+    public void SetTransmission(bool state){
+        this.gameObject.GetComponentInChildren<SimpleCarController>().SetTransmission(state);
     }
+
     #endregion
 
     #region Barrel
 
-    public void KillBarrel(){
-        this.gameObject.GetComponentInChildren<TankFireController>().SetCannonBarrel(false);
+    public void SetBarrel(bool state){
+        this.gameObject.GetComponentInChildren<TankFireController>().SetCannonBarrel(state);
     }
     #endregion
 
     #region Radiator
 
-    public void KillRadiator(){
-        this.gameObject.GetComponentInChildren<SimpleCarController>().SetRadiator(false);
+    public void SetRadiator(bool state){
+        this.gameObject.GetComponentInChildren<SimpleCarController>().SetRadiator(state);
     }
 
     #endregion

@@ -28,7 +28,7 @@ public class PartBehavior : MonoBehaviour
 
     #region PART HUD STATE
 
-    public void Setvitality(int vitality){
+    public void SetVitality(int vitality){
         this.vitality = vitality;
         UpdateHudState();
     }
@@ -38,7 +38,7 @@ public class PartBehavior : MonoBehaviour
             partRenderer.material.SetColor("_Color",Color.yellow);
         }else if(vitality == 1){
             partRenderer.material.SetColor("_Color",Color.red);
-        }else if(vitality == 0){
+        }else if(vitality <= 0){
             partRenderer.material.SetColor("_Color",Color.black);
         }else if(vitality == 3){
             partRenderer.material.SetColor("_Color",Color.white);

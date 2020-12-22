@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 731699220}
   - component: {fileID: 9167817515804273690}
   - component: {fileID: 5089108893547639594}
-  - component: {fileID: 1410226764321695368}
   m_Layer: 8
   m_Name: FuelTankR
   m_TagString: Untagged
@@ -111,18 +110,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1410226764321695368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102787031132436566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &544304393611510936
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,12 +134,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544304393611510936}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.069, y: 2.68, z: 0.52}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.04, y: 2.18, z: 0.4787633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7786597875802154301}
-  m_RootOrder: 17
+  m_Father: {fileID: 6440696507612793141}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &6097122304806963361
 Camera:
@@ -449,7 +436,6 @@ GameObject:
   - component: {fileID: 1219346942}
   - component: {fileID: 2774310990806674441}
   - component: {fileID: 1109608954857808479}
-  - component: {fileID: 6318761185573504548}
   m_Layer: 8
   m_Name: Radiator
   m_TagString: Untagged
@@ -479,7 +465,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167582197736498842}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -547,18 +533,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6318761185573504548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167582197736498842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1360712885044043468
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +546,6 @@ GameObject:
   - component: {fileID: 1303208453}
   - component: {fileID: 5396543583903205339}
   - component: {fileID: 1694095990070164626}
-  - component: {fileID: 6982929594503933134}
   m_Layer: 8
   m_Name: Gunner
   m_TagString: Untagged
@@ -670,18 +643,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6982929594503933134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360712885044043468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1922706789496662751
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +656,6 @@ GameObject:
   - component: {fileID: 1214432376}
   - component: {fileID: 4463076513660370299}
   - component: {fileID: 2232050343241480538}
-  - component: {fileID: 8821330042133873209}
   m_Layer: 8
   m_Name: CanonBreech
   m_TagString: Untagged
@@ -793,18 +753,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8821330042133873209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922706789496662751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1932184023536634401
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +766,6 @@ GameObject:
   - component: {fileID: 78654669}
   - component: {fileID: 8500421456704388268}
   - component: {fileID: 7279573874377708041}
-  - component: {fileID: 8966073998565830926}
   m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
@@ -834,7 +781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932184023536634401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.018, y: -0.0006380677, z: -0.005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9038211869846952083}
@@ -851,9 +798,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.055134952
-  m_Height: 0.9258928
+  m_Height: 0.89039516
   m_Direction: 2
-  m_Center: {x: -0.014845908, y: 0.0012737513, z: 0.43}
+  m_Center: {x: 0, y: 0, z: 0.44774884}
 --- !u!114 &78654669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,18 +864,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932184023536634401}
   m_Mesh: {fileID: -5981544062969976662, guid: 3d210b2be9d4b9144b53828dfc2e73e3, type: 3}
---- !u!114 &8966073998565830926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932184023536634401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2359049043142252314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1032,6 @@ GameObject:
   - component: {fileID: 218721921}
   - component: {fileID: 1013872196175275762}
   - component: {fileID: 6417876682312282649}
-  - component: {fileID: 3345197632372718561}
   m_Layer: 8
   m_Name: HorizontalAiming
   m_TagString: Untagged
@@ -1195,18 +1129,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3345197632372718561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3142482992769073745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3355453081191875871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,7 +1238,6 @@ GameObject:
   - component: {fileID: 5671436458011668391}
   - component: {fileID: 863374455792807249}
   - component: {fileID: 1222149741}
-  - component: {fileID: 8699718950531630335}
   m_Layer: 8
   m_Name: Commander
   m_TagString: Untagged
@@ -1414,18 +1335,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vitality: 0
   resistance: 0
---- !u!114 &8699718950531630335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3632054037235580236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4024470500529903705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1348,6 @@ GameObject:
   - component: {fileID: 1689526473}
   - component: {fileID: 3890580040840265992}
   - component: {fileID: 250985604381060385}
-  - component: {fileID: 8054421076066656002}
   m_Layer: 8
   m_Name: AmmoL
   m_TagString: Untagged
@@ -1537,18 +1445,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8054421076066656002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4024470500529903705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4206627103714872920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,7 +1458,6 @@ GameObject:
   - component: {fileID: 1264986477}
   - component: {fileID: 6911262825260995488}
   - component: {fileID: 1312568002057508603}
-  - component: {fileID: 2202106881170683531}
   m_Layer: 8
   m_Name: Driver
   m_TagString: Untagged
@@ -1660,18 +1555,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2202106881170683531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4206627103714872920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5122736189155559845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,7 +1776,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.03, z: 1}
   m_Children: []
   m_Father: {fileID: 7786597875802154301}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6122056382936889396
 MeshFilter:
@@ -2018,7 +1901,6 @@ GameObject:
   - component: {fileID: 1926423401}
   - component: {fileID: 491099983682286302}
   - component: {fileID: 6764130085005185115}
-  - component: {fileID: 8734911127176720771}
   m_Layer: 8
   m_Name: MachineGunner
   m_TagString: Untagged
@@ -2116,18 +1998,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8734911127176720771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6681799388532342618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6804153006484450421
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,7 +2102,6 @@ GameObject:
   - component: {fileID: 8552158262552583892}
   - component: {fileID: 3386114729763019518}
   - component: {fileID: 6186595268895748536}
-  - component: {fileID: 1112054942702011382}
   m_Layer: 8
   m_Name: AmmoR
   m_TagString: Untagged
@@ -2330,18 +2199,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1112054942702011382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7295465734620792369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7484500079495704989
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,6 +2236,7 @@ Transform:
   - {fileID: 2128066131234076969}
   - {fileID: 3142868387808978546}
   - {fileID: 4278290427517162144}
+  - {fileID: 3061336910194974807}
   m_Father: {fileID: 7786597875802154301}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2476,7 +2334,6 @@ GameObject:
   - component: {fileID: 942713729958492829}
   - component: {fileID: 8064015698781502685}
   - component: {fileID: 1871754130126533674}
-  - component: {fileID: 2449848853121994158}
   m_Layer: 8
   m_Name: Engine
   m_TagString: Untagged
@@ -2574,18 +2431,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2449848853121994158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7609838564191498610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7893984673701057954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,7 +2622,6 @@ GameObject:
   - component: {fileID: 2270986843564597256}
   - component: {fileID: 2556009525922509108}
   - component: {fileID: 1670535893879329369}
-  - component: {fileID: 1181710107848372230}
   m_Layer: 8
   m_Name: FuelTankL
   m_TagString: Untagged
@@ -2875,18 +2719,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1181710107848372230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8128551773967517867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8456396631104869004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,7 +2771,6 @@ Transform:
   - {fileID: 8597051509528631260}
   - {fileID: 3510476072521359903}
   - {fileID: 4032376437013637184}
-  - {fileID: 3061336910194974807}
   - {fileID: 2722489422184872334}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3253,7 +3084,6 @@ GameObject:
   - component: {fileID: 1347539073}
   - component: {fileID: 4184282668869780660}
   - component: {fileID: 2958548964171104671}
-  - component: {fileID: 1626885435330876918}
   m_Layer: 8
   m_Name: Transmission
   m_TagString: Untagged
@@ -3364,18 +3194,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1626885435330876918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8873583052089554150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9071356844058928909
 GameObject:
   m_ObjectHideFlags: 0
@@ -3450,7 +3268,6 @@ GameObject:
   - component: {fileID: 1822052891}
   - component: {fileID: 2302108279690509352}
   - component: {fileID: 7483089723657904989}
-  - component: {fileID: 607663807648272237}
   m_Layer: 8
   m_Name: Loader
   m_TagString: Untagged
@@ -3548,18 +3365,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101018343501567518}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &607663807648272237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101018343501567518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca8ef7c83f8e5b4fbf0be124572bbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9215646945513926240
 GameObject:
   m_ObjectHideFlags: 0

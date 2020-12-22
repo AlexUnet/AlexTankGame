@@ -317,9 +317,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1721,7 +1721,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452438966}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1001 &1507558438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1756,6 +1756,10 @@ PrefabInstance:
     - target: {fileID: 2909647565631583500, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
       propertyPath: m_CollisionDetection
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097122304806963361, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7362775882821306917, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
       propertyPath: m_Enabled
@@ -2422,6 +2426,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2014687416821645516, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2484169228163214330, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -2485,6 +2493,10 @@ PrefabInstance:
     - target: {fileID: 8456396631104869004, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
       propertyPath: m_Name
       value: TankFree_Yel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500421456704388268, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8884370868921014511, guid: d0265a5fe27f6864c95b2712d337e5c9, type: 3}
       propertyPath: mainCamera

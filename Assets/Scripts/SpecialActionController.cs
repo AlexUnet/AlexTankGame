@@ -14,6 +14,7 @@ public class SpecialActionController : MonoBehaviour
     bool zoom;
 
     void Awake(){
+        tankBehavior = GetComponent<TankBehavior>();
 
     }
     void LateUpdate()
@@ -42,9 +43,14 @@ public class SpecialActionController : MonoBehaviour
                 firstPersonCamera.fieldOfView = 27;
             }
         }
-
         if(Input.GetKeyDown(KeyCode.Alpha6)){
             tankBehavior.StopFire();
+        }
+        if(Input.GetKeyDown(KeyCode.R)){
+            tankBehavior.CheckDeathParts();            
+        }
+        if(Input.GetKeyDown(KeyCode.E)){
+
         }
     }
 }
