@@ -15,8 +15,10 @@ public class SimpleCarController : MonoBehaviour
     public Transform frontDriverT,frontPassengerT;
     public Transform rearDriverT, rearPassengerT;
 
-    public float maxSteerAngle = 30;
-    public float motorForce = 3050;
+    [SerializeField]private float maxSteerAngle = 30;
+    [SerializeField]private float motorForce;
+
+    private float motorForceBuffer;
 
     #endregion
 
@@ -31,12 +33,15 @@ public class SimpleCarController : MonoBehaviour
 
     public void Awake(){
         GetComponent<Rigidbody>().centerOfMass = new Vector3(0,-0.3f,0);
+        motorForceBuffer = motorForce;
     }
     public void GetInput(){
         m_horizontalInput = Input.GetAxis("Horizontal");
         m_verticalInput = Input.GetAxis("Vertical");
 
-        stop = Input.GetKey(KeyCode.Space);
+        if(Input.GetKeyDown(KeyCode.Space)){
+            stop = ! stop;
+        }
 
         if(Input.GetAxis("Vertical") != 0){            
             auto = false;
@@ -66,7 +71,7 @@ public class SimpleCarController : MonoBehaviour
         if(stop){
             SetTorque(0,motorForce,0,motorForce,0,motorForce,0,motorForce);
         }else{
-            if(frontDriverW.rpm < 150){
+            if(frontDriverW.rpm < 50){
                 SetTorque(value,0,value,0,value,0,value,0);
             }            
         }
@@ -100,10 +105,10 @@ public class SimpleCarController : MonoBehaviour
     }
 
     private void Stop(){
-        frontDriverW.brakeTorque = 100 * motorForce;
-        frontPassengerW.brakeTorque = 100 * motorForce;
-        rearDriverW.brakeTorque = 100 * motorForce;
-        rearPassengerW.brakeTorque = 100 * motorForce;
+        frontDriverW.brakeTorque = 100 * motorForceBuffer;
+        frontPassengerW.brakeTorque = 100 * motorForceBuffer;
+        rearDriverW.brakeTorque = 100 * motorForceBuffer;
+        rearPassengerW.brakeTorque = 100 * motorForceBuffer;
     }
 
     public void SetEngine(bool state){
@@ -117,8 +122,9 @@ public class SimpleCarController : MonoBehaviour
     }
 
     public void SetRadiator(bool state){
+        
         if(state){
-            motorForce = 800;
+            motorForce = motorForceBuffer;
         }else{
             motorForce = 560;
         }
@@ -128,12 +134,12 @@ public class SimpleCarController : MonoBehaviour
         //Debug.Log("TRANSMISSION DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
         Stop();
         if(state)
-            motorForce = 800;
+            motorForce = motorForceBuffer;
         else
             motorForce = 50;
     }
 
-    private void FixedUpdate(){
+    private void Update(){
         if(engineOn){
             if(driverOn)
                 GetInput();

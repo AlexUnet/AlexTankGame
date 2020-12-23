@@ -9,6 +9,7 @@ public class SimpleCanonController : MonoBehaviour
     private bool gunner = true;
 
     int layerMask = 1 << 8; // el rayo detecta
+    //int layerMask = 1 << 12; SOLO LOS CAMERA DETECTABLE
 
     void Awake(){        
         layerMask = ~layerMask; // todas menos las partes internas

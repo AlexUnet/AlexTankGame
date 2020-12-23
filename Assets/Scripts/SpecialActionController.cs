@@ -7,7 +7,7 @@ public class SpecialActionController : MonoBehaviour
     [SerializeField]TankBehavior tankBehavior;
     [SerializeField]Camera thirdPersonCamera;
     [SerializeField]Camera firstPersonCamera;
-    [SerializeField]Canvas scopeCanvas;
+    [SerializeField]GameObject scopeObject;
     
     int current; int second;
     bool state;
@@ -15,7 +15,6 @@ public class SpecialActionController : MonoBehaviour
 
     void Awake(){
         tankBehavior = GetComponent<TankBehavior>();
-
     }
     void LateUpdate()
     {
@@ -27,7 +26,8 @@ public class SpecialActionController : MonoBehaviour
                 current = 0; second = 1;
                 state = false;
             }
-            scopeCanvas.enabled = state;
+            //scopeCanvas.enabled = state;
+            scopeObject.SetActive(state);
             thirdPersonCamera.targetDisplay = current;
             firstPersonCamera.targetDisplay = second;
             firstPersonCamera.fieldOfView = 27;

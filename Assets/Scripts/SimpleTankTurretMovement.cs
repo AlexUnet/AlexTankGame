@@ -7,8 +7,7 @@ public class SimpleTankTurretMovement : MonoBehaviour
     public bool horizontalAiming;
     [SerializeField]private Transform parent;
     public float range = Mathf.Infinity;
-    [SerializeField] private Camera mainCamera;
-    
+    [SerializeField] private Camera mainCamera;    
 
     void Awake(){
         horizontalAiming = true;
@@ -17,27 +16,20 @@ public class SimpleTankTurretMovement : MonoBehaviour
     [SerializeField]Transform playerPointView;
     void Update () {
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(mainCamera.transform.position,ray.direction * range,Color.green);
-        RaycastHit hit;
-        Physics.Raycast(ray, out hit);
-             
-        Vector3 localTargetPos = transform.InverseTransformPoint(hit.point);
-        Vector3 localCameratPos = playerPointView.InverseTransformPoint(hit.point);
-        localTargetPos.y = 0.0f;
+        //Debug.Log(Input.mousePosition.x);
 
-        TurretRotation(localCameratPos,playerPointView);
+        TurretRotation(Input.mousePosition,playerPointView);
         if(horizontalAiming){
-            TurretRotation(localTargetPos,transform);                     
+            TurretRotation(Input.mousePosition,transform);                     
         }else{
             Debug.Log("HORIZONTAL AIMING DESTROYED TURRET MOVEMENT NOT POSIBLE IN" + this.gameObject.name);
         }
     }
 
     public void TurretRotation(Vector3 localTargetPos,Transform objetive){
-        if(localTargetPos.x > 2){
+        if(localTargetPos.x > 600){
             objetive.Rotate(0,Time.deltaTime * 13,0);                               
-        }else if (localTargetPos.x < -2){
+        }else if (localTargetPos.x < 400){
             objetive.Rotate(0,Time.deltaTime * -13,0);
         }
     }
