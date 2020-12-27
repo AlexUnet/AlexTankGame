@@ -7,23 +7,31 @@ public class SimpleCanonController : MonoBehaviour
     [SerializeField]Camera main;
 
     private bool gunner = true;
+    int layerMask1 = 1 << 8; // el rayo detecta
+    int layerMask2 = 1 << 12; //SOLO LOS CAMERA DETECTABLE
+    int actualLayerMask;
 
-    int layerMask = 1 << 8; // el rayo detecta
-    //int layerMask = 1 << 12; SOLO LOS CAMERA DETECTABLE
-
-    void Awake(){        
-        layerMask = ~layerMask; // todas menos las partes internas
+    void Awake(){
+        layerMask1 = ~layerMask1; // todas menos las partes internas
+        actualLayerMask = layerMask1;
     }
 
     public void SetGunner(bool state){
         gunner = state;
+    }
+
+    public void SetView(bool state){
+        if(state)
+            actualLayerMask = layerMask2;
+        else
+            actualLayerMask = layerMask1;
     }
     
     public GameObject testPoint;
     void LateUpdate(){
         Ray ray = main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Physics.Raycast(ray, out hit,Mathf.Infinity,layerMask);
+        Physics.Raycast(ray, out hit,Mathf.Infinity,actualLayerMask);
         Debug.DrawRay(transform.position,hit.point * Mathf.Infinity,Color.red);
 
         testPoint.transform.position = hit.point;

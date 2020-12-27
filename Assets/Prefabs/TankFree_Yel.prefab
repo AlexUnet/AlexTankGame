@@ -173,12 +173,12 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 256
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 8400000, guid: be0364402ab90234ea9602796675d176, type: 2}
   m_TargetDisplay: 2
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -2736,6 +2736,8 @@ GameObject:
   - component: {fileID: 2091005275228037299}
   - component: {fileID: 6257295848115513906}
   - component: {fileID: 8033763034447445174}
+  - component: {fileID: 8022317963963222273}
+  - component: {fileID: 5514825337427168339}
   m_Layer: 9
   m_Name: TankFree_Yel
   m_TagString: Player
@@ -2833,8 +2835,8 @@ Rigidbody:
   m_GameObject: {fileID: 8456396631104869004}
   serializedVersion: 2
   m_Mass: 1500
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.03
+  m_AngularDrag: 2.5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2874,7 +2876,7 @@ MonoBehaviour:
   rearDriverT: {fileID: 8620420989412005380}
   rearPassengerT: {fileID: 4223818008818504042}
   maxSteerAngle: 30
-  motorForce: 850
+  motorForce: 1000
 --- !u!114 &2091005275228037299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2939,7 +2941,34 @@ MonoBehaviour:
   tankBehavior: {fileID: 0}
   thirdPersonCamera: {fileID: 6227664583590492756, guid: aafc6966141254b41a6486ce86dfeb7c, type: 3}
   firstPersonCamera: {fileID: 1783095959608004761}
-  scopeCanvas: {fileID: 8350272498237923685, guid: 30056d74fd041d547b53f16516f8f6dc, type: 3}
+  scopeObject: {fileID: 0}
+  canonLayerControl: {fileID: 1421877679}
+--- !u!65 &8022317963963222273
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456396631104869004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32845175, y: 0.09316151, z: 1.8250488}
+  m_Center: {x: 0.79116935, y: 0.19573352, z: -0.045528494}
+--- !u!65 &5514825337427168339
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456396631104869004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32845175, y: 0.09316151, z: 1.8250488}
+  m_Center: {x: -0.77, y: 0.19573352, z: -0.045528494}
 --- !u!1 &8520488855059695892
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class SpecialActionController : MonoBehaviour
     [SerializeField]Camera thirdPersonCamera;
     [SerializeField]Camera firstPersonCamera;
     [SerializeField]GameObject scopeObject;
+
+    [SerializeField]SimpleCanonController canonLayerControl;
     
     int current; int second;
     bool state;
@@ -19,13 +21,14 @@ public class SpecialActionController : MonoBehaviour
     void LateUpdate()
     {
         if(Input.GetKeyDown(KeyCode.LeftShift)){
-            if(!state){
+            if(!state){//mira
                 state = true;
                 current = 1; second = 0;
-            }else{
+            }else{//tercera persona
                 current = 0; second = 1;
                 state = false;
             }
+            canonLayerControl.SetView(state);
             //scopeCanvas.enabled = state;
             scopeObject.SetActive(state);
             thirdPersonCamera.targetDisplay = current;
