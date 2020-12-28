@@ -11,6 +11,8 @@ public class ShellController : MonoBehaviour
     //RB de prueba para bajar la velocidad y facilitar la detección
     [SerializeField]Rigidbody bodyRB;
 
+    [SerializeField]ShellTailController tail;
+
     RaycastHit hit;
     float angle;
     int layerMask = 1 << 8;
@@ -21,6 +23,7 @@ public class ShellController : MonoBehaviour
     void FixedUpdate()
     {
         if(Physics.Raycast(transform.position,transform.forward,out hit,detectionDistance,layerMask)){
+            tail.SetTailPosition();
             angle = (-90 + Vector3.Angle(transform.forward,hit.normal));
             if(angle < 49.00){
                 Debug.LogError("RICOCHETT " + "way to hit: " + hit.collider.gameObject.name + " angle: " + angle);

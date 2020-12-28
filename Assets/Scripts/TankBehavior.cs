@@ -24,12 +24,15 @@ public class TankBehavior : MonoBehaviour
     }
 
     public void Death(){
-        Debug.Log("TANK: " + this.gameObject.name + " DESTROYED");
-        this.GetComponent<SimpleCarController>().enabled = false;
-        this.GetComponent<SpecialActionController>().enabled = false;
-        this.GetComponentInChildren<SimpleTankTurretMovement>().enabled = false;
-        this.GetComponentInChildren<SimpleCanonController>().enabled = false;
-        this.GetComponentInChildren<TankFireController>().enabled = false;
+        if(!death){
+            Debug.Log("TANK: " + this.gameObject.name + " DESTROYED");
+            death = true;
+            this.GetComponent<SimpleCarController>().enabled = false;
+            this.GetComponent<SpecialActionController>().enabled = false;
+            this.GetComponentInChildren<SimpleTankTurretMovement>().enabled = false;
+            this.GetComponentInChildren<SimpleCanonController>().enabled = false;
+            this.GetComponentInChildren<TankFireController>().enabled = false;
+        }        
         //KILL THE TANK
     }
 
@@ -210,12 +213,13 @@ public class TankBehavior : MonoBehaviour
     [SerializeField]GameObject turret;
 
     public void AmmoExplotionAnimation(){
+        Death();
         Rigidbody turretRB = turret.AddComponent<Rigidbody>();
-        transform.DetachChildren();
+        turret.transform.parent = null;
+        //transform.DetachChildren();
         turretRB.mass = 200;
         Instantiate(AmmoExplotionDeath,transform);        
-        turretRB.AddExplosionForce(Random.Range(3000f,4500f),transform.position,1000f,1,ForceMode.Impulse);
-        Death();
+        turretRB.AddExplosionForce(Random.Range(3000f,4500f),transform.position,1000f,1,ForceMode.Impulse);        
     }
 
     IEnumerator JackInWaitTime(){

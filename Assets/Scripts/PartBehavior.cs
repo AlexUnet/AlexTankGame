@@ -36,12 +36,16 @@ public class PartBehavior : MonoBehaviour
     public void UpdateHudState(){ 
         if(vitality == 2){
             partRenderer.material.SetColor("_Color",Color.yellow);
+            partRenderer.material.SetColor("_EmissionColor",Color.yellow);
         }else if(vitality == 1){
             partRenderer.material.SetColor("_Color",Color.red);
+            partRenderer.material.SetColor("_EmissionColor",Color.red);
         }else if(vitality <= 0){
             partRenderer.material.SetColor("_Color",Color.black);
+            partRenderer.material.SetColor("_EmissionColor",Color.black);
         }else if(vitality == 3){
-            partRenderer.material.SetColor("_Color",Color.white);
+            partRenderer.material.SetColor("_EmissionColor",Color.white);
+            partRenderer.material.SetColor("_EmissionColor",Color.white);
         }
     }
 

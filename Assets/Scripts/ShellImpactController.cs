@@ -7,8 +7,8 @@ public class ShellImpactController : MonoBehaviour
     private int ricochets;
     private int perforations;
     public GameObject impactParticle;
-    [SerializeField] GameObject fuseParticle;
 
+    [SerializeField] GameObject fuseParticle;
     [SerializeField] Rigidbody body;
     [SerializeField] SphereCollider explotion;
     private bool active;
@@ -20,6 +20,7 @@ public class ShellImpactController : MonoBehaviour
     void Awake(){
         explotion.enabled = false;
         active = true;
+        StartCoroutine(PrecautionDestroy());
     }
 
     void OnCollisionEnter(Collision collision){
@@ -55,5 +56,11 @@ public class ShellImpactController : MonoBehaviour
     IEnumerator Destroy(){
         yield return new WaitForSeconds(6);
         Destroy(this.gameObject);
+    }
+    IEnumerator PrecautionDestroy(){
+        yield return new WaitForSeconds(10);
+        if(this.gameObject != null){
+            Destroy(this.gameObject);
+        }
     }
 }
