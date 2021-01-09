@@ -22,64 +22,129 @@ public class SimpleCarController : MonoBehaviour
 
     #endregion
 
+    
+    
 
+    #region  DamageBehaviorVariables
     private bool engineOn = true;
     private bool driverOn = true;
     private bool radiatorOn = true;
-    private bool auto;
-    private int vel;
 
-    private bool stop;
+    #endregion
+    private Rigidbody body;
+    private bool auto;
+    
 
     public void Awake(){
+        body = GetComponent<Rigidbody>();
         GetComponent<Rigidbody>().centerOfMass = new Vector3(0,-0.3f,0);
         motorForceBuffer = motorForce;
+        maxVel = maxVelBuffer;
     }
     public void GetInput(){
         m_horizontalInput = Input.GetAxis("Horizontal");
         m_verticalInput = Input.GetAxis("Vertical");
+        if(m_verticalInput != 0){
+            auto = false;
+            maxVel = maxVelBuffer;
+        }         
+            
 
         if(Input.GetKeyDown(KeyCode.Space)){
             stop = ! stop;
-        }
-
-        if(Input.GetAxis("Vertical") != 0){            
-            auto = false;
         }        
-        else if(Input.GetKeyDown(KeyCode.E)){
-            auto = !auto;
-            vel = 1;
+        if(Input.GetKeyDown(KeyCode.E)){
+            NextVelControl(true);
+            NextVel();
+            auto = true;
         }            
-        else if(Input.GetKeyDown(KeyCode.Q)){
-            auto = !auto;
-            vel = -1;
+        if(Input.GetKeyDown(KeyCode.Q)){
+            NextVelControl(false);
+            NextVel();
+            auto = true;
         }
-
         if(auto){
             m_verticalInput = vel;
         }
     }
+    #region Automatic Velocity Control
+    
+    private int vel;
+    private int maxVelBuffer = 75;
+    private int maxVel;
+    private int velControl = 0;
+    float speed;
+    private bool stop;
 
+    public void NextVelControl(bool dir){
+        if(dir){
+            if(velControl < 4){
+                velControl++;
+            }
+        }else{
+            if(velControl > -2){
+                velControl--;
+            }
+        }
+    }
+
+    public void NextVel(){
+        switch (velControl)
+        {
+            case 1:
+            Debug.Log("PRIMERA");
+            maxVel = 25;
+            vel = 1;
+            break;
+            case 2:
+            Debug.Log("SEGUNDA");
+            maxVel = 40;
+            vel = 1;
+            break;
+            case 3:
+            Debug.Log("TERCERA");
+            maxVel = 75;
+            vel = 1;
+            break;
+            case -1:
+            Debug.Log("REVERSA");
+            maxVel = 15;
+            vel = -1;
+            break;            
+            default:
+            Debug.Log("NEUTRO");
+            maxVel = 0;
+            break;
+        }
+    }
+
+    #endregion
+
+    #region WheelColliderBehavior
     private void Steer(){
         m_steeringAngle = maxSteerAngle * m_horizontalInput;
         frontDriverW.steerAngle = m_steeringAngle;
         frontPassengerW.steerAngle = m_steeringAngle;
     }
-    private bool reverse; bool foward = false;
     private void Accelerate(){
         float value = m_verticalInput * motorForce;
+        speed = body.velocity.sqrMagnitude;
+
         if(stop){
             SetTorque(0,motorForce,0,motorForce,0,motorForce,0,motorForce);
-        }else{
-            if(frontDriverW.rpm < 50){
+        }        
+        else{
+            if(speed < maxVel){
                 SetTorque(value,0,value,0,value,0,value,0);
-            }            
+            }else{
+                SetTorque(0,0,0,0,0,0,0,0);
+            }         
         }
     }
 
-    public void SetTorque(float frontDWA, float frontDB,float frontPWA, float frontPWB,float rearDWA,float rearDWB,float rearPWA, float rearPWB){
+    public void SetTorque(float frontDWA, float frontDWB,float frontPWA, float frontPWB,float rearDWA,float rearDWB,float rearPWA, float rearPWB){
         frontDriverW.motorTorque = frontDWA;
-        frontDriverW.brakeTorque = frontDB;
+        frontDriverW.brakeTorque = frontDWB;
         frontPassengerW.motorTorque = frontPWA;
         frontPassengerW.brakeTorque = frontPWB;
         rearDriverW.motorTorque = rearDWA;
@@ -111,6 +176,11 @@ public class SimpleCarController : MonoBehaviour
         rearPassengerW.brakeTorque = 100 * motorForceBuffer;
     }
 
+    #endregion
+
+    #region SetPartBehavior
+        
+   
     public void SetEngine(bool state){
         engineOn = state;
         //Debug.Log("ENGINE DEATH ACELERATION NOT POSIBLE IN ->" + this.gameObject.name); 
@@ -122,12 +192,10 @@ public class SimpleCarController : MonoBehaviour
     }
 
     public void SetRadiator(bool state){
-        
-        if(state){
+        if(state)
             motorForce = motorForceBuffer;
-        }else{
-            motorForce = 560;
-        }
+        else
+            motorForce = 560;        
     }
 
     public void SetTransmission(bool state){
@@ -139,10 +207,16 @@ public class SimpleCarController : MonoBehaviour
             motorForce = 50;
     }
 
-    private void Update(){
+     #endregion
+
+    void Update(){
+        if(driverOn)
+            GetInput();
+    }
+
+    private void FixedUpdate(){
+        
         if(engineOn){
-            if(driverOn)
-                GetInput();
             Accelerate();
             Steer();
             UpdateWheelPoses();
@@ -151,8 +225,4 @@ public class SimpleCarController : MonoBehaviour
             Stop();
         }        
     }
-    
-    
-
-
 }
