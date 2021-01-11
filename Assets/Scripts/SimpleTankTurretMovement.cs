@@ -1,26 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class SimpleTankTurretMovement : MonoBehaviour
+public class SimpleTankTurretMovement : NetworkBehaviour
 {
-    public bool horizontalAiming;
-    [SerializeField]private Transform parent;
-    public float range = Mathf.Infinity;
-    [SerializeField] private Camera mainCamera;    
-
+    [SerializeField] private Transform Turret;
+    public bool horizontalAiming; 
     void Awake(){
         horizontalAiming = true;
     }
-    [SerializeField]Transform testCube;
     [SerializeField]Transform playerPointView;
     void Update () {
-
-        //Debug.Log(Input.mousePosition.x);
-
+        if(!isLocalPlayer)
+            return;
         TurretRotation(Input.mousePosition,playerPointView);
         if(horizontalAiming){
-            TurretRotation(Input.mousePosition,transform);                     
+            TurretRotation(Input.mousePosition,Turret);                     
         }else{
             Debug.Log("HORIZONTAL AIMING DESTROYED TURRET MOVEMENT NOT POSIBLE IN" + this.gameObject.name);
         }

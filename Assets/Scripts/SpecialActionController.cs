@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
+using Mirror;
 using UnityEngine;
 
-public class SpecialActionController : MonoBehaviour
+public class SpecialActionController : NetworkBehaviour
 {
     [SerializeField]TankBehavior tankBehavior;
     [SerializeField]Camera thirdPersonCamera;
     [SerializeField]Camera firstPersonCamera;
+    [SerializeField]CinemachineVirtualCamera vCamera;
+      
     [SerializeField]GameObject scopeObject;
 
     [SerializeField]SimpleCanonController canonLayerControl;
@@ -17,6 +21,18 @@ public class SpecialActionController : MonoBehaviour
 
     void Awake(){
         tankBehavior = GetComponent<TankBehavior>();
+    }
+    void Start(){
+        if(isLocalPlayer){
+            thirdPersonCamera.gameObject.SetActive(true);
+            firstPersonCamera.gameObject.SetActive(true);
+            vCamera.gameObject.SetActive(true);
+        }
+        else{
+            thirdPersonCamera.gameObject.SetActive(false);
+            firstPersonCamera.gameObject.SetActive(false);
+            vCamera.gameObject.SetActive(false);
+        }
     }
     void LateUpdate()
     {

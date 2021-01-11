@@ -1,23 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class TankFireController : MonoBehaviour
+public class TankFireController : NetworkBehaviour
 {
-    public Rigidbody tank;
-    public Animator fire_A;
-    public GameObject shell;
-    public ParticleSystem fireEffect;
+    [SerializeField] private Transform firePos;
+    [SerializeField] private Rigidbody tankbody;
+
+    [SerializeField] private Animator fire_Animator;
+    [SerializeField] private GameObject shell;
+
+    [SerializeField] private ParticleSystem fireEffect;
 
     private int reloadTime;
     private bool fire;
     private bool cannonBreech = true;
     private bool barrel = true;
-
-    void Awake(){
-
-    }
-
     public void SetLoader(bool state){
         if(state){
             reloadTime = 5;
@@ -35,20 +34,22 @@ public class TankFireController : MonoBehaviour
     }
     void Update()
     {
+        if(!isLocalPlayer)
+            return;
         if(Input.GetMouseButtonDown(0)){
             if(cannonBreech){
                     if(!fire){
                     fire = true;
-                    Instantiate(fireEffect,transform.position,transform.rotation);
-                    fire_A.SetBool("fire",true);
+                    Instantiate(fireEffect,firePos.position,firePos.rotation);
+                    fire_Animator.SetBool("fire",true);
                     StartCoroutine(Reload());
                     if(barrel)
-                        Instantiate(shell,transform.position,transform.rotation).GetComponent<Rigidbody>().AddForce(transform.forward * 200,ForceMode.Impulse);
+                        Instantiate(shell,firePos.position,firePos.rotation).GetComponent<Rigidbody>().AddForce(firePos.forward * 200,ForceMode.Impulse);
                     else
                         Debug.Log("CANON BARREL DAMAGED WEAPON FIRE NOT POSIBLE");
-                    tank.AddExplosionForce(200f,transform.position,700f,1,ForceMode.Impulse);
+                    tankbody.AddExplosionForce(200f,firePos.position,700f,1,ForceMode.Impulse);
                 }else{
-                    //Debug.Log("RELOADING");
+                    Debug.Log("RELOADING");
                 }
             }else{
                 Debug.Log("CANON BREECH DESTROYED WEAPON FIRE NOT POSIBLE");

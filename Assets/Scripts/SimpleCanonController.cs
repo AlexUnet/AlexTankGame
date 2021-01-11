@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class SimpleCanonController : MonoBehaviour
+public class SimpleCanonController : NetworkBehaviour
 {
+    [SerializeField] Transform cannon;
     [SerializeField]Camera main;
 
     private bool gunner = true;
-    int layerMask1 = 1 << 8; // el rayo detecta
-    int layerMask2 = 1 << 12; //SOLO LOS CAMERA DETECTABLE
-    int actualLayerMask;
+    private int layerMask1 = 1 << 8; // el rayo detecta
+    private int layerMask2 = 1 << 12; //SOLO LOS CAMERA DETECTABLE
+    private int actualLayerMask;
 
     void Awake(){
         layerMask1 = ~layerMask1; // todas menos las partes internas
         actualLayerMask = layerMask1;
+        testPoint = Instantiate(testPoint);
     }
-
     public void SetGunner(bool state){
         gunner = state;
     }
@@ -29,10 +31,13 @@ public class SimpleCanonController : MonoBehaviour
     
     public GameObject testPoint;
     void LateUpdate(){
+        if(!isLocalPlayer)
+            return;
+            
         Ray ray = main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Physics.Raycast(ray, out hit,Mathf.Infinity,actualLayerMask);
-        Debug.DrawRay(transform.position,hit.point * Mathf.Infinity,Color.red);
+        Debug.DrawRay(cannon.position,hit.point * Mathf.Infinity,Color.red);
 
         testPoint.transform.position = hit.point;
 
@@ -40,9 +45,9 @@ public class SimpleCanonController : MonoBehaviour
         //Quaternion lookRotation = Quaternion.LookRotation(dir,transform.up);
         //Vector3 rotation1 = lookRotation.eulerAngles;
         if(gunner)
-            transform.LookAt(hit.point);
+            cannon.LookAt(hit.point);
         //Debug.Log(transform.localEulerAngles); 
-        transform.localRotation = Quaternion.Euler(TransformAngleX(transform.localEulerAngles.x),TransformAngleX(transform.localEulerAngles.y),0);
+        cannon.localRotation = Quaternion.Euler(TransformAngleX(cannon.localEulerAngles.x),TransformAngleX(cannon.localEulerAngles.y),0);
         //transform.localRotation = Quaternion.Euler(TransformAngleX(rotation1.x),TransformAngleX(rotation1.y),0);
     }
 

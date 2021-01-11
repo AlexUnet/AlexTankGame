@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class SimpleCarController : MonoBehaviour
+public class SimpleCarController : NetworkBehaviour
 {
 
     #region WheelController
@@ -210,11 +211,15 @@ public class SimpleCarController : MonoBehaviour
      #endregion
 
     void Update(){
+        if(!isLocalPlayer)
+            return;
         if(driverOn)
             GetInput();
     }
 
     private void FixedUpdate(){
+        if(!isLocalPlayer)
+            return;
         
         if(engineOn){
             Accelerate();
